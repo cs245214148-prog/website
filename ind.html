@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Payroll System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 15px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Employee Payroll</h2>
+
+    <label>Employee Name</label>
+    <input type="text" id="name">
+
+    <label>Employee ID</label>
+    <input type="text" id="empid">
+
+    <label>Basic Salary</label>
+    <input type="number" id="basic">
+
+    <button onclick="calculateSalary()">Calculate Salary</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+    function calculateSalary() {
+        let basic = Number(document.getElementById("basic").value);
+
+        let hra = basic * 0.20;        // 20% HRA
+        let da = basic * 0.10;         // 10% DA
+        let deductions = basic * 0.08; // 8% deductions
+        let netSalary = basic + hra + da - deductions;
+
+        document.getElementById("output").innerHTML = `
+            <p>HRA: ₹${hra.toFixed(2)}</p>
+            <p>DA: ₹${da.toFixed(2)}</p>
+            <p>Deductions: ₹${deductions.toFixed(2)}</p>
+            <hr>
+            <strong>Net Salary: ₹${netSalary.toFixed(2)}</strong>
+        `;
+    }
+</script>
+
+</body>
+</html>
